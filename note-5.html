@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>react实例-生命周期</title>
+    <script src="https://cdn.bootcss.com/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.bootcss.com/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script type="text/babel">
+    /**
+     * 1. 更新UI - 每次都需要
+     *      
+     *      function Clock(props) {
+                return (
+                    <div>
+                        <h1>Hello world</h1>
+                        <h2>Time: {props.date.toLocaleTimeString()}</h2>
+                    </div>
+                )
+            }
+
+            function tick(props) {
+                ReactDOM.render(
+                    <Clock date={new Date()} />,
+                    document.getElementById('app')
+                )
+            }
+            
+            window.setInterval(tick, 1000)
+     */
+        function Clock(props) {
+            return (
+                <div>
+                    <h1>Hello world</h1>
+                    <h2>Time: {props.date.toLocaleTimeString()}</h2>
+                </div>
+            )
+        }
+
+        function tick(props) {
+            ReactDOM.render(
+                <Clock date={new Date()} />,
+                document.getElementById('app')
+            )
+        }
+        
+        window.setInterval(tick, 1000)
+    </script>
+</body>
+</html>
