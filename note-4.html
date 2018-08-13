@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>react实例-helloWorld</title>
+    <title>react实例-组件</title>
     <script src="https://cdn.bootcss.com/react/16.4.0/umd/react.development.js"></script>
     <script src="https://cdn.bootcss.com/react-dom/16.4.0/umd/react-dom.development.js"></script>
     <script src="https://cdn.bootcss.com/babel-standalone/6.26.0/babel.min.js"></script>
@@ -13,8 +13,116 @@
     <div id="app"></div>
 
     <script type="text/babel">
+    /**
+     * 1. 函数定义/类定义组件 - 单一组件
+     *      1.1 函数名大写
+     *      1.2 JSX属性作为单个对象 props 传递给该组件
+     *      function FirstComponents(props) {
+                return <h1>Hello {props.name}</h1>
+            }
+
+            const ele = <FirstComponents name="YXP"/>
+
+            ReactDOM.render(
+                ele,
+                document.getElementById('app')
+            )
+
+        2. 子组件 - 多个组件
+            App - 顶部组件
+            组件返回值只能有一个根元素
+
+            function FirstComponents(props) {
+                return <h1>{props.name} 性别{props.type}</h1>
+            }
+
+            function App(props) {
+                return (
+                    <div>
+                        <FirstComponents name="YXP" type="男"/>
+                        <FirstComponents name="LZ" type="男"/>
+                    </div>
+                )
+            }
+
+            const ele = <App />
+
+            ReactDOM.render(
+                ele,
+                document.getElementById('app')
+            )
+        
+        3. 组件提取
+            
+            原:
+            function Comment(props) {
+                return (
+                    <div className="comment">
+                        <div className="userInfo">
+                            <div className="userName">{props.author.name}</div>
+                            <div className="user-sex">{props.author.sex}</div>
+                        </div>
+                        <div className="Comment-date">
+                            {props.date.toLocaleDateString()}
+                        </div>
+                    </div>
+                )
+            }
+            
+            const comment = {
+                date: new Date(),
+                text: 'I hope you enjoy learning React!',
+                author: {
+                    name: 'Hello Kitty',
+                    avatarUrl: 'http://placekitten.com/g/64/64'
+                }
+            }
+            const ele = <Comment text={comment.text} author={comment.author} date={comment.date} />
+
+            ReactDOM.render(
+                ele,
+                document.getElementById('app')
+            )
+
+            提取后
+     */
+        function Comment(props) {
+            return (
+                <div className="comment">
+                    <User author={props.author}/>
+                    <DateTime date={props.date} />
+                </div>
+            )
+        }
+        
+        function User(props) {
+            return (
+                <div className="userInfo">
+                    <div className="userName">姓名: {props.author.name}</div>
+                    <div className="user-sex">性别: {props.author.sex}</div>
+                </div>
+            )
+        }
+        function DateTime(props) {
+            return (
+                <div className="Comment-date">
+                    {props.date.toLocaleDateString()}
+                </div>
+            )
+        }
+
+        const comment = {
+            date: new Date(),
+            text: 'I hope you enjoy learning React!',
+            author: {
+                name: 'YXP',
+                sex: 'man'
+            }
+        }
+        const ele = <Comment text={comment.text} author={comment.author} date={comment.date} />
+
         ReactDOM.render(
-            <h1>Hello world</h1>,
+            ele,
             document.getElementById('app')
         )
     </script>
