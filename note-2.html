@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>react实例-JSX</title>
+    <script src="https://cdn.bootcss.com/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.bootcss.com/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script type="text/babel">
+        //  JSX， 一种 JavaScript 的语法扩展
+        // const ele = <h1>JSX</h1>;
+
+        /**
+            1. 在 JSX 中使用表达式
+            function formatName(user) {
+                return user.firstName + ' ' + user.lastName;
+            }
+
+            const user = {
+                firstName: 'Y',
+                lastName: 'XP'
+            }
+
+            const ele = (
+                <h1> Hello {formatName(user)}</h1>
+            )
+
+            ReactDOM.render(
+                ele,
+                document.getElementById('app')
+            )
+
+            2. JSX属性
+                标签自有属性, 采用驼峰命名
+                非自有属性, 小写
+                
+                const user = {
+                    firstName: 'Y',
+                    lastName: 'XP'
+                }
+                const ele = (
+                    <div>
+                        <h1 index="0"> Hello</h1>
+                        <div index="1" className={user.firstName}>head</div>
+                    </div>
+                )
+
+                ReactDOM.render(
+                    ele,
+                    document.getElementById('app')
+                )
+        */
+
+        const user = {
+            firstName: 'Y',
+            lastName: 'XP'
+        }
+        const ele = (
+            <div>
+                <h1 index="0"> Hello</h1>
+                <div index="1" className={user.firstName}>head</div>
+            </div>
+        )
+
+        ReactDOM.render(
+            ele,
+            document.getElementById('app')
+        )
+    </script>
+</body>
+</html>
