@@ -33,24 +33,119 @@
             }
             
             window.setInterval(tick, 1000)
-     */
-        function Clock(props) {
-            return (
-                <div>
-                    <h1>Hello world</h1>
-                    <h2>Time: {props.date.toLocaleTimeString()}</h2>
-                </div>
-            )
-        }
 
-        function tick(props) {
+        2. 将函数转化为类
+
+            class Clock extends React.Component {
+                constructor(props) {
+                    super(props);
+                    this.state = {
+                        date: new Date()
+                    }
+                }
+
+                render () {
+                    return (
+                        <div>
+                            <h1>Hi</h1>
+                            <h2>{this.state.date.toLocaleTimeString()}</h2>
+                        </div>
+                    )
+                }
+            }
+
             ReactDOM.render(
-                <Clock date={new Date()} />,
+                <Clock />,
                 document.getElementById('app')
             )
-        }
         
-        window.setInterval(tick, 1000)
+        3. 生命周期
+            3.1 挂载: 组件第一次加载到DOM中的时候 - componentDidMount
+            3.2 卸载: 生成的这个DOM被移除的时候 - componentWillUnmount
+            3.3 状态更新: setState
+
+            class Clock extends React.Component {
+                constructor(props) {
+                    super(props);
+                    this.state = {
+                        count: 0
+                    }
+                }
+
+                // 挂载时运行
+                componentDidMount() {
+                    console.log('挂载组件')
+                    this.timeID = window.setInterval(() => {
+                        this.tick();
+                    }, 1000)
+                }
+
+                componentWillUnmount() {
+                    console.log('卸载组件')
+                }
+
+                tick() {
+                    this.setState({
+                        count: ++ this.state.count
+                    })
+                }
+
+                render () {
+                    return (
+                        <div>
+                            <h1>Hi</h1>
+                            <h2>{this.state.count}</h2>
+                        </div>
+                    )
+                }
+            }
+
+            ReactDOM.render(
+                <Clock />,
+                document.getElementById('app')
+            )
+     */
+        class Clock extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    count: 0,
+                    i: 1
+                }
+            }
+
+            // 挂载时运行
+            componentDidMount() {
+                console.log('挂载组件')
+                this.timeID = window.setInterval(() => {
+                    this.tick();
+                }, 1000)
+            }
+
+            componentWillUnmount() {
+                console.log('卸载组件')
+            }
+
+            tick() {
+                this.setState({
+                    count: this.state.i + this.state.count
+                })
+            }
+
+            render () {
+                return (
+                    <div>
+                        <h1>Hi</h1>
+                        <h2>{this.state.count}</h2>
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(
+            <Clock />,
+            document.getElementById('app')
+        )
     </script>
 </body>
 </html>
