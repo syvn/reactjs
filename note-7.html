@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>react实例-渲染</title>
+    <script src="https://cdn.bootcss.com/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.bootcss.com/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script type="text/babel">
+    /**
+        1. 条件渲染
+
+        function UserGreeting(props) {
+            return <h1>欢迎</h1>
+        }
+
+        function GuestGreeting(props) {
+            return <h1>退出</h1>
+        }
+
+        function Greeting(props) {
+            const isLoggenIn = props.isLoggenIn;
+            if (isLoggenIn) {
+                return <UserGreeting />
+            } else {
+                return <GuestGreeting />
+            }
+        }
+
+        ReactDOM.render(
+            <Greeting isLoggenIn = {true} />,
+            document.getElementById('app')
+        )
+
+
+        function UserGreeting(props) {
+            return <h1>欢迎</h1>
+        }
+
+        function GuestGreeting(props) {
+            return <h1>退出</h1>
+        }
+
+        function Greeting(props) {
+            const isLoggenIn = props.isLoggedIn;
+            console.log(props)
+            if (isLoggenIn) {
+                return <UserGreeting />
+            } else {
+                return <GuestGreeting />
+            }
+        }
+
+    function LoginButton(props) {
+        return (
+            <button onClick={props.onClick}>
+                Login
+            </button>
+        );
+    }
+
+    function LogoutButton(props) {
+        return (
+            <button onClick={props.onClick}>
+                Logout
+            </button>
+        );
+    }
+
+        class LOginControl extends React.Component {
+            constructor(props) {
+                super(props)
+                this.loginClick = this.loginClick.bind(this);
+                this.logoutClick = this.logoutClick.bind(this);
+                this.state = {
+                    isLoggedIn: false
+                }
+            }
+
+            loginClick() {
+                console.log('login')
+                this.setState({isLoggedIn: true});
+            }
+
+            logoutClick() {
+                console.log('logout')
+                this.setState({ isLoggedIn: false })
+            }
+
+            render () {
+                const isLoggedIn = this.state.isLoggedIn;
+
+                let button = null;
+                if (isLoggedIn) {
+                    button = <LogoutButton onClick={this.logoutClick} />;
+                } else {
+                    button = <LoginButton onClick={this.loginClick} />;
+                }
+
+                return (
+                    <div>
+                        <Greeting isLoggedIn={isLoggedIn} />
+                        {button}
+                    </div>
+                )
+            } 
+        }
+
+        ReactDOM.render(
+            <LOginControl />,
+            document.getElementById('app')
+        )
+
+        2. 列表
+        
+        const numbers = [1, 2, 3, 4, 5]
+        const listItems = numbers.map((number) =>
+            <li key={number}>{number}</li>
+        )
+        console.log(listItems)
+        ReactDOM.render(
+            <ul>{listItems}</ul>,
+            document.getElementById('app')
+        )
+
+        3. 列表组件抽取
+
+        function NumberList(props) {
+            const numbers = [1, 2, 3, 4, 5]
+            const listItems = numbers.map((number) =>
+                <li key={number}>{number}</li>
+            )
+            return (
+                <ul>{listItems}</ul>
+            )
+        }
+        console.log(listItems)
+        ReactDOM.render(
+            <NumberList />,
+            document.getElementById('app')
+        )
+    */
+        function NumberList(props) {
+            const numbers = [1, 2, 3, 4, 5]
+            const listItems = numbers.map((number) =>
+                <li key={number}>{number}</li>
+            )
+            return (
+                <ul>{listItems}</ul>
+            )
+        }
+        console.log(listItems)
+        ReactDOM.render(
+            <NumberList />,
+            document.getElementById('app')
+        )
+    </script>
+</body>
+</html>
